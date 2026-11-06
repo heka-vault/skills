@@ -10,6 +10,7 @@ Cursor, Codex and anything else that reads that format.
 | Skill | What it does |
 |-------|--------------|
 | [`aaa-redesign`](skills/aaa-redesign/SKILL.md) | Redesigns a whole app's UI/UX to a polished, cohesive standard with a bounded process: audit, benchmark (Mobbin), redesign with at most 4 parallel agents and 1 reviewer, one review, one validation. |
+| [`council`](skills/council/SKILL.md) | Reviews work with a council of three flagship models from three providers: independent read-only reviews, scores out of 10, fix and re-review rounds (capped at 3), results in the PR description. Rations a seat on a metered subscription. |
 
 ## Install
 
@@ -51,6 +52,21 @@ agent and edit its first paragraph.
 It works best with the Mobbin MCP server connected and the `design` plugin
 installed (for `/design:design-critique`). Without them the agent falls back to
 its own knowledge and a manual critique.
+
+## Using `council`
+
+**Change the seats.** The `Seats` table at the top of the skill says which
+model sits in each seat, which provider reaches it, and how often it runs. The
+defaults are Claude Opus (Claude Code), the GPT flagship (Codex) and Gemini Pro
+(through Cursor). The Gemini seat is marked metered, so it sits in only round 1
+and the sign-off round. Edit the table to match the providers you pay for.
+
+Say "council" in a message. Name members to override the table for that run:
+
+> council: review this PR with Claude Opus, GPT Sol and Grok.
+
+It is written for [T3 Code](https://github.com/pingdotgg/t3code)'s
+`delegate_task`, and falls back to any harness's subagent tools.
 
 ## License
 
