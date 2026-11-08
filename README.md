@@ -11,6 +11,7 @@ Cursor, Codex and anything else that reads that format.
 |-------|--------------|
 | [`aaa-redesign`](skills/aaa-redesign/SKILL.md) | Redesigns a whole app's UI/UX to a polished, cohesive standard with a bounded process: audit, benchmark (Mobbin), redesign with at most 4 parallel agents and 1 reviewer, one review, one validation. |
 | [`council`](skills/council/SKILL.md) | Reviews work with a council of three flagship models from three providers: independent read-only reviews, scores out of 10, fix and re-review rounds (capped at 3), results in the PR description. Rations a seat on a metered subscription. |
+| [`change-metrics`](skills/change-metrics/SKILL.md) | Measures a pull request before anyone reviews it: size, areas, sensitive paths, merge risk and how deep a review each group needs. Built for grouped and stacked pull requests. |
 
 ## Install
 
@@ -67,6 +68,25 @@ Say "council" in a message. Name members to override the table for that run:
 
 It is written for [T3 Code](https://github.com/pingdotgg/t3code)'s
 `delegate_task`, and falls back to any harness's subagent tools.
+
+## Using `change-metrics`
+
+**Change the lists.** The `Your setup` section at the top of the skill lists
+the sensitive areas (a change there always gets a deep review) and the
+generated files (counted apart, never as review work). Edit both to match your
+codebase.
+
+Ask for it before a review, or when you open a pull request:
+
+> change-metrics on this branch, then put the result in the PR description.
+
+It reads the groups in a pull request from its commits or its stack, rates
+each group and the whole, and tells the reviewer where to look first. It is
+our version of Warp's
+[`merge-risk`](https://github.com/warpdotdev/common-skills/blob/main/.agents/skills/merge-risk/SKILL.md),
+which builds on Matt Pocock's
+[`pr`](https://github.com/mattpocock/skills/blob/main/skills/engineering/pr/SKILL.md)
+skill. We added grouping, the measurements and the review depth.
 
 ## License
 
